@@ -1,9 +1,16 @@
 # TablinumDB
-Use database:
+## Use database:
 
 `use Tablinum`
 
-DataTables:
+## DataTables:
 
 `db.Documents.find({}).pretty();`
 `db.Users.find({}).pretty();`
+
+## Default paths:
+
+### Windows
+`C:\data\db`
+### MacOS
+`/data/db`
