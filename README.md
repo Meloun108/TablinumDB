@@ -1,9 +1,9 @@
 # TablinumDB
 Use database:
 
-use Tablinum
+`use Tablinum`
 
 DataTables:
 
-db.Documents.find({}).pretty();
-db.Users.find({}).pretty();
+`db.Documents.find({}).pretty();`
+`db.Users.find({}).pretty();`
