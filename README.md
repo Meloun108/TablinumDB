@@ -8,7 +8,7 @@
 ## Default paths:
 ### Windows
 `C:\data\db`
-### MacOS
+### Linux & MacOS
 `/data/db`
 
 ## Export/Import collection databases:
