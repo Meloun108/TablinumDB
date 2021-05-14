@@ -14,8 +14,12 @@
 ## Export/Import collection databases:
 ### Export
 `mongoexport.exe --collection=collection_name --db=database_name --out=filename.json`
+or
+`mongodump.exe -d database_name -o directory_backup`
 ### Import
 `mongoimport.exe -d database_name -c collection_name --file filename.json`
+or
+`mongorestore.exe -d database_name directory_backup`
 
 # Schema
 ## Documents
