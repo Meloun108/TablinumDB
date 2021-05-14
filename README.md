@@ -2,9 +2,8 @@
 ## Use database:
 `use Tablinum`
 
-## DataTables:
-`db.Documents.find({}).pretty();`
-`db.Users.find({}).pretty();`
+## DataTables find data:
+`db.collection_name.find({}).pretty();`
 
 ## Default paths:
 ### Windows
