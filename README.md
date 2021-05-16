@@ -35,38 +35,14 @@ or
   GroupInfo:
   {
     [
-      Group:
-      {
-        _id: ObjectId,
-        dept: String,
-      },
+      GroupId: ObjectId,
       NumberGroup: String,
       NumberGroupDate: ISODate,
-      LocationThis: Boolean,
+      Location: Boolean,
     ]
   },
-  From:
-  {
-    _id: ObjectId,
-    InitioName: String,
-  },
-  Executor:
-  {
-    _id: ObjectId,
-    Login: String,
-    Password: Hash,
-    Group:
-    {
-      _id: ObjectId,
-      Dept: String,
-    },
-    Name: String,
-    Role:
-    {
-      _id: ObjectId,
-      RoleName: String,
-    },
-  },
+  From: ObjectId,
+  Executor: ObjectId,
   ExecutionDate: ISODate,
   Status: Boolean,
   View: String,
@@ -89,17 +65,9 @@ or
   _id: ObjectId,
   Login: String,
   Password: Hash,
-  Group:
-  {
-    _id: ObjectId,
-    Dept: String,
-  },
+  GroupId: ObjectId,
   Name: String,
-  Role:
-  {
-    _id: ObjectId,
-    RoleName: String,
-  },
+  RoleId: ObjectId,
 }
 ```
 
