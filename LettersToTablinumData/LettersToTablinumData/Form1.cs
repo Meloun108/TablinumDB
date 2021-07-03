@@ -20,7 +20,7 @@ namespace LettersToTablinumData
         private IMongoCollection<Group> _groups;
         private IMongoCollection<Document> _documents;
         public string path = @"C:\Users\Ned Meloun\source\repos\TablinumDB\department\department\backup_release_output.sql";
-        public string pathO = @"C:\Users\Ned Meloun\source\repos\TablinumDB\department\otdel\backup_release_output.sql";
+        public string pathO = @"C:\Users\Ned Meloun\source\repos\TablinumDB\otdel\otdel\backup_release_output.sql";
         public string connectionString = "mongodb://localhost:27017";
         public MongoClient client;
         public IMongoDatabase database;
@@ -66,11 +66,11 @@ namespace LettersToTablinumData
                         line = line.TrimStart('(').TrimEnd(',').TrimEnd(')');
                         string[] splLine = line.Split(',');
                         Initio initio = new Initio();
-                        initio.Executor = splLine[1].TrimStart('\'').TrimEnd('\'');
+                        initio.Executor = splLine[1].TrimStart('\'').TrimEnd('\'').Replace("\\", "");
                         _initios.InsertOne(initio);
                         Initio old = new Initio();
                         old.Id = splLine[0];
-                        old.Executor = splLine[1].TrimStart('\'').TrimEnd('\'');
+                        old.Executor = splLine[1].TrimStart('\'').TrimEnd('\'').Replace("\\", "");
                         oldInitio.Add(old);
                     }
                 }
@@ -101,11 +101,11 @@ namespace LettersToTablinumData
                         line = line.TrimStart('(').TrimEnd(',').TrimEnd(')');
                         string[] splLine = line.Split(',');
                         Group group = new Group();
-                        group.GroupName = splLine[1].TrimStart('\'').TrimEnd('\'');
+                        group.GroupName = splLine[1].TrimStart('\'').TrimEnd('\'').Replace("\\", "");
                         _groups.InsertOne(group);
                         Group old = new Group();
                         old.Id = splLine[0];
-                        old.GroupName = splLine[1].TrimStart('\'').TrimEnd('\'');
+                        old.GroupName = splLine[1].TrimStart('\'').TrimEnd('\'').Replace("\\", "");
                         oldGroup.Add(old);
                     }
                 }
@@ -168,11 +168,16 @@ namespace LettersToTablinumData
                     {
                         line = line.TrimStart('(').TrimEnd(',').TrimEnd(')');
                         string[] splLine = line.Split(',');
+                        DocumentGroup dg = new DocumentGroup();
+                        dg.GroupId = // secretary group;
+                        dg.NumberGroup = "";
+                        dg.NumberGroupDate = new DateTime();
+                        dg.Location = false;
+                        location.Add(dg);
                         for (int i = 0; i < oldLocation.Count; i++)
                         {
                             if (oldLocation[i].NumberGroup == splLine[0])
                             {
-                                DocumentGroup dg = new DocumentGroup();
                                 dg.GroupId = grp.Find(item => item.GroupName == oldGroup.Find(it => 
                                                                                 it.Id == oldLocation[i].GroupId).GroupName).Id;
                                 dg.NumberGroup = "";
@@ -209,7 +214,7 @@ namespace LettersToTablinumData
                             document.InitioId = init.Find(item => item.Executor == oldInitio.Find(it => it.Id == splLine[7]).Executor).Id;
                             document.UserId = "60e03b07e18ce904c8e04ee4";
                             document.ExecutionDate = (splLine[15] != "NULL" && 
-                                                      splLine[15] != "1753-01-01 00:00:00") ? 
+                                                      splLine[15] != "'1753-01-01 00:00:00'") ? 
                                                                                DateTime.ParseExact(splLine[15].TrimStart('\'').TrimEnd('\''),
                                                                                "yyyy-MM-dd HH:mm:ss",
                                                                                System.Globalization.CultureInfo.InvariantCulture) :
